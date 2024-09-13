@@ -25,26 +25,49 @@ export const Input = forwardRef((Props:Props,ref: LegacyRef<TextInput>| null    
 
     const{IconLeft, IconRight, IconLeftName, IconRightName,title, OnIconLeftPress, OnIconRightPress, ...rest} =Props
 
+    const calculateSizeWidth = () =>{
+        if(IconLeft && IconRight){
+            return '80%'
+        }else if(IconLeft || IconRight){
+            return '90%'
+        }else{
+            return '100%'
+        }
+    }
+    const calculateSizePaddingLeft = () =>{
+        if(IconLeft && IconRight){
+            return 10;
+        }else if(IconLeft || IconRight){
+            return 10;
+        }else{
+            return 20;
+        }
+    };
+
+
     return(
         <>
-        <Text style={style.titleInput}>{title}</Text>
-         <View style={style.BoxInput}>
+        {title&&<Text style={style.titleInput}>{title}</Text>}
+         <View style={[style.BoxInput, {paddingLeft:calculateSizePaddingLeft()}]}>
             {IconLeft && IconLeftName &&(
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={OnIconLeftPress} style={style.Button}>
                 <IconLeft name ={IconLeftName as any} size={28} color={themas.colors.gray} style={style.Icon} />
             </TouchableOpacity>
-            
+
             )}
             
                 <TextInput 
-                    style={style.input}
+                    style={[
+                        style.input, {width: calculateSizeWidth()}
+                    ]}
+                    {...rest}
                 />
-                <MaterialIcons
-                 name="email"
-                 size={20}
-                 color={themas.colors.gray}
-                />
+                {IconRight && IconRightName &&(
+                    <TouchableOpacity onPress={OnIconRightPress} style={style.Button}>
+                        <IconRight name ={IconRightName as any} size={28} color={themas.colors.gray} style={style.Icon} />
+                    </TouchableOpacity>
+                )}
                 </View>
                 </>
     )

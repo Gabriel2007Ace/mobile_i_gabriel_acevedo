@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
+import {FontAwesome, Octicons} from '@expo/vector-icons'
+
 import {
     StyleSheet,
     Text,
@@ -38,33 +40,19 @@ export default function Login (){
                  <Text style={style.text}>Bem vindo de volta!</Text>
             </View>
             <View style={style.BoxMid}>
-                <Input 
+                <Input
+                    
                     title="ENDEREÇO DE E-MAIL"
+                    IconRight={MaterialIcons}
+                    IconRightName="email"
                 />
-                {/* <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
-                <View style={style.BoxInput}>
-                <TextInput 
-                style={style.input}
+                  <Input
+                    title="SENHA"
+                    IconRight={Octicons}
+                    IconRightName="eye-closed"
+                    
                 />
-                <MaterialIcons 
-                 name="email"
-                 size={20}
-                 color={themas.colors.gray}
-                />
-                </View>
                 
-                <Text style={style.titleInput}>SENHA</Text>
-                <View style={style.BoxInput}>
-                <TextInput 
-                style={style.input}
-
-                />
-                <MaterialIcons 
-                 name="remove-red-eye"
-                 size={20}
-                 color={themas.colors.gray}
-                />
-                </View> */}
             </View>
             <View style ={style.BoxBottom}>
                 <TouchableOpacity style={style.button}>
