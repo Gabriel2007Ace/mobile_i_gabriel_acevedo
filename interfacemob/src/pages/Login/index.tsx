@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
-import { useBatteryLevel } from 'expo-battery';
 
-import { NavigationContainer } from '@react-navigation/native';
-
-import { createStackNavigator } from '@react-navigation/stack';
 
 import {
     StyleSheet,
@@ -18,11 +14,10 @@ import {
 import { style } from "./styles";
 import Logo from '../../assets/Logo.png'
 import{MaterialIcons} from '@expo/vector-icons'
-import { themas } from "../../global/themes";
-import { Input } from "../../components/Input";
-//import { Input } from "../../components/Input";
+import { themas } from "../../global/themas";
 
-
+const [email,setEmail] =useState('');
+const [password, setPassword] =useState('');
 
 
 export default function Login (){
@@ -38,10 +33,7 @@ export default function Login (){
                  <Text style={style.text}>Bem vindo de volta!</Text>
             </View>
             <View style={style.BoxMid}>
-                <Input 
-                    title="ENDEREÇO DE E-MAIL"
-                />
-                {/* <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
+                <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
                 <View style={style.BoxInput}>
                 <TextInput 
                 style={style.input}
@@ -57,14 +49,14 @@ export default function Login (){
                 <View style={style.BoxInput}>
                 <TextInput 
                 style={style.input}
-
+                value={email}
                 />
                 <MaterialIcons 
                  name="remove-red-eye"
                  size={20}
                  color={themas.colors.gray}
                 />
-                </View> */}
+                </View>
             </View>
             <View style ={style.BoxBottom}>
                 <TouchableOpacity style={style.button}>
