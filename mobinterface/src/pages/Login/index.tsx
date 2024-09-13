@@ -22,6 +22,7 @@ import Logo from '../../assets/Logo.png'
 import{MaterialIcons} from '@expo/vector-icons'
 import { themas } from "../../global/themes";
 import { Input } from "../../components/Input";
+import { Button } from "../../components/Input/Button";
 //import { Input } from "../../components/Input";
 
 
@@ -55,9 +56,10 @@ export default function Login (){
                 
             </View>
             <View style ={style.BoxBottom}>
-                <TouchableOpacity style={style.button}>
-                    <Text style={style.textButton}>ENTRAR</Text>
-                </TouchableOpacity>
+                <Button 
+                    text="ENTRAR"
+                    
+                />
             </View>
             <Text style={style.textBotton}>Não tem conta? <Text style={style.textBottonCreate}>Crie agora</Text></Text>
         </View>
