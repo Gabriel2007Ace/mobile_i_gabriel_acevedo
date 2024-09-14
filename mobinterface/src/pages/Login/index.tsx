@@ -14,7 +14,8 @@ import {
     View,
     Image, 
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 
 import { style } from "./styles";
@@ -24,11 +25,48 @@ import { themas } from "../../global/themes";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Input/Button";
 //import { Input } from "../../components/Input";
+import {useNavigation, NavigationProp} from '@react-navigation/native'
 
+export default function Login (){ 
+    const navigation =useNavigation<NavigationProp<any>>();
 
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [ShowPassword,setShowPassword] = useState(true);
+    const [loading,setLoanding] = useState(false);
+    
+     async function getLogin(){
+        try {
+            setLoanding(true)
 
+            if(!email || !password){
+                return Alert.alert('Atenção', 'Informe os campos obrigatórios!')
+            }
 
-export default function Login (){
+            setTimeout(()=>{
+                if(email == 'daora.legal@gmail.com' && password == '1234'){
+                    Alert.alert('Logado com sucesso')
+                    navigation.navigate("BottomRoutes")
+
+                }else{
+                    Alert.alert('Usuário não encontrado!')
+
+                }
+
+                navigation.navigate("BottomRoutes")
+                setLoanding(false)
+            },3000)
+
+            
+        } catch (error) {
+            console.log(error)
+            
+        }
+    }
+    
+
+    
+    
     return (
         
         <View style={style.container}>
@@ -42,15 +80,21 @@ export default function Login (){
             </View>
             <View style={style.BoxMid}>
                 <Input
-                    
+                    value={email}
+                    onChangeText ={setEmail}
                     title="ENDEREÇO DE E-MAIL"
                     IconRight={MaterialIcons}
                     IconRightName="email"
                 />
                   <Input
+                    value={password}
+                    onChangeText={setPassword}
                     title="SENHA"
                     IconRight={Octicons}
-                    IconRightName="eye-closed"
+                    IconRightName={ShowPassword?"eye-closed":"eye   "}
+                    secureTextEntry={ShowPassword}
+                    OnIconLeftPress={()=>setShowPassword(!ShowPassword)}
+
                     
                 />
                 
@@ -58,7 +102,8 @@ export default function Login (){
             <View style ={style.BoxBottom}>
                 <Button 
                     text="ENTRAR"
-                    
+                    loading={loading}
+                    onPress={()=>getLogin()}
                 />
             </View>
             <Text style={style.textBotton}>Não tem conta? <Text style={style.textBottonCreate}>Crie agora</Text></Text>
